@@ -1,8 +1,8 @@
 <template>
-  <div class="choice-item">
+  <li class="choice-item">
     <input type="checkbox" ref="checkbox" @click="onClick">
     <span v-text="restaurant.name" @click="forwardClick"></span>
-  </div>
+  </li>
 </template>
 
 <script>
@@ -45,5 +45,12 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+li {
+  list-style: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 </style>

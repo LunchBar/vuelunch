@@ -1,6 +1,9 @@
 <template>
   <div class="voting">
-    <choice-item v-for="choiceItem in choiceItems" :choiceItem="choiceItem"></choice-item>
+    <ul>
+      <li is="choice-item" v-for="choiceItem in choiceItems" :choiceItem="choiceItem"></li>
+    </ul>
+    <button type="button" @click="vote">Vote</button>
   </div>
 </template>
 
