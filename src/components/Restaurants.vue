@@ -3,7 +3,9 @@
     <h1>Restaurants</h1>
     <ul>
       <li v-for="restaurant in restaurants" >
+        <router-link :to="{name: 'RestaurantDetail', params: {restaurantId: restaurant.id}}">
           <span v-text="restaurant.name"></span>
+        </router-link>
       </li>
     </ul>
   </div>
