@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import api from '../api'
+import { simpleApi } from '../api'
 import router from '../router'
 import ChoiceItem from './ChoiceItem'
 
@@ -36,12 +36,9 @@ export default {
       return confirm('Proceed with voting?')
     },
     fetchData () {
-      api
-      .then(client => client.questions.questions_choices_list({question_pk: this.questionId}))
-        .then(respond => JSON.parse(respond.data))
-        .then(list => {
-          this.choiceItems = list
-        })
+      simpleApi(client => client.questions.questions_choices_list({question_pk: this.questionId}), list => {
+        this.choiceItems = list
+      })
     },
     votable () {
       let voteCount = this.$children.filter(it => it.$refs.checkbox.checked === true).length
@@ -59,11 +56,10 @@ export default {
       let itemsToVote = this.$children
         .filter(it => it.$refs.checkbox.checked === true)
         .map(it => it.choiceItem.id)
-      return Promise
-        .all(
-          itemsToVote.map(choiceId => {
-            api.then(client => client.choices.choices_vote({id: choiceId}))
-          }))
+      return Promise.all(
+        itemsToVote.map(choiceId => {
+          simpleApi(client => client.choices.choices_vote({id: choiceId}))
+        }))
     }
   }
 }

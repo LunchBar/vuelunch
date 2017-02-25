@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import api from '../api'
+import { simpleApi } from '../api'
 import RestaurantMenu from './RestaurantMenu'
 
 export default {
@@ -29,10 +29,8 @@ export default {
   },
   methods: {
     fetchData () {
-      api
-      .then(client => client.restaurants.restaurants_read({id: this.restaurantId}))
-      .then(response => JSON.parse(response.data))
-      .then(data => {
+      simpleApi(client => client.restaurants.restaurants_read({id: this.restaurantId}),
+      data => {
         this.detail = data
       })
     }

@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import api from '../api'
+import { simpleApi } from '../api'
 
 export default {
   name: 'RestaurantMenu',
@@ -31,12 +31,11 @@ export default {
   },
   methods: {
     fetchData () {
-      api
-      .then(client => client.restaurants.restaurants_menuitems_list({restaurant_pk: this.restaurantId}))
-      .then(response => JSON.parse(response.data))
-      .then(data => {
-        this.menuItems = data
-      })
+      simpleApi(
+        client => client.restaurants.restaurants_menuitems_list({restaurant_pk: this.restaurantId}),
+        data => {
+          this.menuItems = data
+        })
     }
   }
 }

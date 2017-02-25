@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import api from '../api'
+import { simpleApi } from '../api'
 
 export default {
   props: ['choiceItem'],
@@ -29,12 +29,10 @@ export default {
       this.$refs.checkbox.click()
     },
     fetchData () {
-      api
-      .then(client => client.restaurants.restaurants_read({id: this.choiceItem.choice}))
-        .then(respond => JSON.parse(respond.data))
-        .then(data => {
-          this.restaurant = data
-        })
+      simpleApi(client => client.restaurants.restaurants_read({id: this.choiceItem.choice}),
+      data => {
+        this.restaurant = data
+      })
     }
   },
   computed: {
