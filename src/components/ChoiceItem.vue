@@ -1,0 +1,49 @@
+<template>
+  <div class="choice-item">
+    <input type="checkbox" ref="checkbox" @click="onClick">
+    <span v-text="restaurant.name" @click="forwardClick"></span>
+  </div>
+</template>
+
+<script>
+import api from '../api'
+
+export default {
+  props: ['choiceItem'],
+  data () {
+    return {
+      restaurant: {}
+    }
+  },
+  created () {
+    this.fetchData()
+  },
+  methods: {
+    onClick (event) {
+      if (!this.$parent.votable()) {
+        event.preventDefault()
+        window.alert('Too many votes!')
+      }
+    },
+    forwardClick (event) {
+      this.$refs.checkbox.click()
+    },
+    fetchData () {
+      api
+      .then(client => client.restaurants.restaurants_read({id: this.choiceItem.choice}))
+        .then(respond => JSON.parse(respond.data))
+        .then(data => {
+          this.restaurant = data
+        })
+    }
+  },
+  computed: {
+    checked () {
+      return this.$refs.checkbox.checked
+    }
+  }
+}
+</script>
+
+<style>
+</style>

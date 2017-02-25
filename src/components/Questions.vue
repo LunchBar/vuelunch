@@ -3,7 +3,9 @@
     <h1>Questions</h1>
     <ul>
       <li v-for="question in questions">
-        <span v-text="question.question_text"></span>
+        <router-link :to="{name: 'Voting', params: {questionId: question.id}}">
+          <span v-text="question.question_text"></span>
+        </router-link>
       </li>
     </ul>
   </div>
