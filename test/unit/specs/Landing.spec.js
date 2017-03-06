@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Landing from 'src/components/Landing'
+import Landing from '@/components/Landing'
 
 describe('Landing.vue', () => {
   it('should render correct contents', () => {

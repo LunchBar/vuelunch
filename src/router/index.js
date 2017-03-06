@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Landing from 'components/Landing'
-import Questions from 'components/Questions'
-import Restaurants from 'components/Restaurants'
-import RestaurantDetail from 'components/RestaurantDetail'
-import Voting from 'components/Voting'
+import Landing from '../components/Landing'
+import Questions from '../components/Questions'
+import Restaurants from '../components/Restaurants'
+import RestaurantDetail from '../components/RestaurantDetail'
+import Voting from '../components/Voting'
 
 Vue.use(Router)
 
